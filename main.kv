@@ -1,0 +1,318 @@
+Manager:
+    Login:
+    Signup1:
+    Signup2:
+    Signup3:
+
+
+
+<Login>:
+    name: "login"
+    MDScreen:
+        md_bg_color: "ffffff"
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 50
+            padding: 20, 20
+            MDLabel:
+                text: "Login"
+                halign: "center"
+                bold: True
+                font_style:"H4"
+            MDTextField:
+                id: phone_login
+                pos_hint: {"center_x":.5, "center_y":.65}
+                hint_text: "Phone Number"
+                text_color_normal: "000000"
+                text_color_focus: "000000"
+                hint_text_color_normal: "000000"
+                hint_text_color_focus: "000000"
+                size_hint_x: .7
+                line_color_normal: "000000"
+                line_color_focus: "000000"
+                multiline: False
+                helper_text_color_normal: "000000"
+                helper_text_color_focus: "000000"
+                icon_left: "account"
+                icon_left_color_normal: "000000"
+                icon_left_color_focus: "000000"
+                on_text:
+                    app.valid_num(phone_login.text)
+            MDTextField:
+                id: password_login
+                multiline: False
+                pos_hint: {"center_x":.5, "center_y":.45}
+                text_color_normal: "000000"
+                text_color_focus: "000000"
+                size_hint_x: .7
+                hint_text_color_normal: "000000"
+                hint_text_color_focus: "000000"
+                line_color_normal: "000000"
+                line_color_focus: "000000"
+                hint_text: "Password"
+                helper_text: ""
+                helper_text_color_normal: "000000"
+                helper_text_color_focus: "000000"
+                icon_left_color_normal: "000000"
+                icon_left_color_focus: "000000"
+                password: True
+                icon_left: "lock-open"
+            MDFlatButton:
+                id: custom_login_btn
+                size_hint_x: .5
+                pos_hint: {"center_x":.5}
+                text: ""
+                font_size: 15
+                font_style: "Overline"
+            MDGridLayout:
+                cols:3
+                spacing: 10
+            MDRoundFlatButton:
+                text: "Login"
+                font_style: "Button"
+                pos_hint: {"center_x":.5, "center_y":.35}
+                md_bg_color: 0, .1, .5, 1
+                on_press:    
+                    app.user_login()
+            MDFlatButton:
+                text: "Don't have an account? Sign Up Now"
+                pos_hint: {"center_x":.5, "center_y":.15}
+                on_release: 
+                    app.root.current = "signup1"
+                    root.manager.transition.direction = 'up'
+
+<Signup1>:
+    name: "signup1"
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: 40
+        padding: 0, 0, 0, 40
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x":.05, "center_y":.99}
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = 'down'
+        MDTextField:
+            id: name_signup
+            mode: "rectangle"
+            multiline: False
+            pos_hint: {"center_x":.5, "center_y":.65}
+            text_color_normal: "000000"
+            text_color_focus: "000000"
+            size_hint_x: .8
+            text: root.text
+            hint_text_color_normal: "000000"
+            hint_text_color_focus: "000000"
+            line_color_normal: "000000"
+            line_color_focus: "000000"
+            hint_text: "Name"
+            helper_text: ""
+            helper_text_color_normal: "000000"
+            helper_text_color_focus: "000000"
+            icon_left_color_normal: "000000"
+            icon_left_color_focus: "000000"
+            icon_left: "card-text"
+        MDGridLayout:
+            cols:3
+            spacing: 10
+            pos_hint: {"center_x":.5, "center_y":.45}
+            size_hint: .8, .1
+            MDRectangleFlatIconButton:
+                id: male
+                text: "Male"
+                icon: 'human-male'
+                size_hint_x: .9
+                line_color: 0, .1, .5, 1
+                icon_color: 0, .1, .5, 1
+                text_color: 0, .1, .5, 1
+                on_press: app.gender_re("male")
+                md_bg_color: "636dc6"
+            MDRectangleFlatIconButton:   
+                id: female
+                text: "Female"
+                icon: 'human-female'
+                size_hint_x: .9
+                on_press: app.gender_re("female")
+                line_color: 0, .1, .5, 1
+                icon_color: 0, .1, .5, 1
+                text_color: 0, .1, .5, 1
+                md_bg_color: "ffffff"
+            MDRectangleFlatIconButton:
+                id: male_female
+                text: "other"
+                icon: 'human-male-female'
+                size_hint_x: .9
+                line_color: 0, .1, .5, 1
+                icon_color: 0, .1, .5, 1
+                text_color: 0, .1, .5, 1
+                on_press: app.gender_re("male_female")
+                md_bg_color: "ffffff"
+        MDGridLayout:
+            cols:3
+            spacing: 10
+            pos_hint: {"center_x":.5}
+            size_hint: .8, .1
+        MDFlatButton:
+            text: "Next"
+            text_color: "ffffff"
+            theme_text_color: "Custom"
+            md_bg_color: 0, .1, .5, 1
+            pos_hint: {"center_x": .5, "center_y":.35}
+            on_release: 
+                app.signup_valid1()
+                root.manager.transition.direction = 'left'
+<Signup2>
+    name: "signup2"
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: 40
+        padding: 0, 0, 0, 40
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x":.05, "center_y":.99}
+            on_release:
+                app.root.current = "signup1"
+                root.manager.transition.direction = 'right'
+        MDTextField:
+            id: brith_signup
+            mode: "rectangle"
+            multiline: False
+            pos_hint: {"center_x":.5, "center_y":.55}
+            text_color_normal: "000000"
+            text_color_focus: "000000"
+            size_hint_x: .7
+            hint_text_color_normal: "000000"
+            hint_text_color_focus: "000000"
+            line_color_normal: "000000"
+            line_color_focus: "000000"
+            hint_text: "Date of Brith(DD/MM/YYYY)"
+            helper_text: ""
+            helper_text_color_normal: "000000"
+            helper_text_color_focus: "000000"
+            icon_left_color_normal: "000000"
+            icon_left_color_focus: "000000"
+            icon_left: "calendar"
+            on_text:
+                app.valid_date(brith_signup.text)
+        MDGridLayout:
+            cols:3
+            spacing: 10
+            pos_hint: {"center_x":.5}
+            size_hint: .8, .1
+        MDFlatButton:
+            text: "Next"
+            text_color: "ffffff"
+            theme_text_color: "Custom"
+            md_bg_color: 0, .1, .5, 1
+            pos_hint: {"center_y": .35, "center_x": .5}
+            on_release: 
+                app.signup_valid2()
+                root.manager.transition.direction = 'left'
+<Signup3>:
+    name: "signup3"
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: 40
+        padding: 0, 0, 0, 40
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x":.05, "center_y":.99}
+            on_release:
+                app.root.current = "signup2"
+                root.manager.transition.direction = 'right'
+        MDTextField:
+            id: phone_signup
+            mode: "rectangle"
+            multiline: False
+            pos_hint: {"center_x":.5, "center_y":.65}
+            text_color_normal: "000000"
+            text_color_focus: "000000"
+            size_hint_x: .7
+            hint_text_color_normal: "000000"
+            hint_text_color_focus: "000000"
+            line_color_normal: "000000"
+            line_color_focus: "000000"
+            hint_text: "Phone Number"
+            helper_text: ""
+            helper_text_color_normal: "000000"
+            helper_text_color_focus: "000000"
+            icon_left_color_normal: "000000"
+            icon_left_color_focus: "000000"
+            icon_left: "phone"
+            on_text:
+                app.valid_num_signup(phone_signup.text)
+        MDTextField:
+            id: mail_signup
+            mode: "rectangle"
+            multiline: False
+            pos_hint: {"center_x":.5, "center_y":.45}
+            text_color_normal: "000000"
+            text_color_focus: "000000"
+            size_hint_x: .7
+            hint_text_color_normal: "000000"
+            hint_text_color_focus: "000000"
+            line_color_normal: "000000"
+            line_color_focus: "000000"
+            hint_text: "Mail"
+            helper_text: ""
+            helper_text_color_normal: "000000"
+            helper_text_color_focus: "000000"
+            icon_left_color_normal: "000000"
+            icon_left_color_focus: "000000"
+            icon_left: "email"
+        MDTextField:
+            id: password_signup
+            mode: "rectangle"
+            multiline: False
+            pos_hint: {"center_x":.5, "center_y":.45}
+            text_color_normal: "000000"
+            text_color_focus: "000000"
+            size_hint_x: .7
+            hint_text_color_normal: "000000"
+            hint_text_color_focus: "000000"
+            line_color_normal: "000000"
+            line_color_focus: "000000"
+            password: True
+            hint_text: "Password"
+            helper_text: ""
+            helper_text_color_normal: "000000"
+            helper_text_color_focus: "000000"
+            icon_left_color_normal: "000000"
+            icon_left_color_focus: "000000"
+            password: True
+            icon_left: "lock"
+        MDGridLayout:
+            cols:3
+            spacing: 10
+            pos_hint: {"center_x":.5}
+            size_hint: .8, .1
+        MDFlatButton:
+            text: "Next"
+            text_color: "ffffff"
+            theme_text_color: "Custom"
+            md_bg_color: 0, .1, .5, 1
+            pos_hint: {"center_y": .35, "center_x": .5}
+            on_release: 
+                app.register_account()
+                root.manager.transition.direction = 'left'
+
+<Appscren>:
+    name: "appscreen"
+    MDScreen:
+        md_bg_color: "ffffff"
+        MDBoxLayout:
+            orientation: "vertical"
+            MDTopAppBar:
+                id: titlename
+                title: "Hi, Guest User"
+                specific_text_color: 0, .1, .5, 1
+                md_bg_color: "ffffff"
+                elevation: 2
+                font_style: "H3"
+                left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+            MDLabel:
+                text: "Welcome"
+                halign: "center"
+
+
